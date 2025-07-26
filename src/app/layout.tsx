@@ -24,6 +24,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <script
+          defer
+          data-domain="qr.pratyakshkwatra.com"
+          src="https://analytics.pratyakshkwatra.com/js/script.file-downloads.hash.outbound-links.js"
+        ></script>
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
