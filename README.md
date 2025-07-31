@@ -12,22 +12,6 @@ A minimal **black and white QR Code Generator** built with Next.js.
 
 ---
 
-## Roadmap
-
-- [x] **Design & Implement Navbar**
-- [x] **Design a Basic Landing Page**
-- [ ] **Build Home Page Skeleton**
-- [ ] **Add QR Content Types** (Text, URL, Contact, etc.)
-- [ ] **Implement QR Code Generation Logic**
-- [ ] **Enable QR Download & Share Options**
-- [ ] **Set Up User Authentication & Route Guards**
-- [ ] **Integrate Database (Drizzle ORM)**
-- [ ] **Add QR Code Save & History Features**
-- [ ] **Implement Bulk QR Code Generation**
-- [ ] **Integrate Payments / Subscription System**
-
----
-
 ## Getting Started
 
 ### 1. Clone the repository

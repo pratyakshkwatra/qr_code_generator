@@ -1,37 +1,47 @@
 "use client";
-import { House, QrCode } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { House, QrCode } from "lucide-react";
 
 export function Navbar() {
   const router = useRouter();
 
+  const navItems = [
+    {
+      label: "Home",
+      icon: House,
+      path: "/",
+    },
+    {
+      label: "Create QR",
+      icon: QrCode,
+      path: "/create_qr",
+    },
+  ];
+
   return (
-    <div className="px-4 h-12 bg-black flex justify-evenly items-center gap-4">
+    <nav className="bg-black h-14 px-4 flex items-center justify-between shadow-md">
       <div
-        className="flex justify-center items-center gap-1"
-        style={{ cursor: "pointer" }}
+        className="flex items-center gap-2 cursor-pointer"
         onClick={() => router.push("/")}
       >
-        <img src="favicon.ico" alt="" className="invert brightness-0 h-8" />
-        <p className="text-white text-xl font-extrabold">QR Generator</p>
+        <img src="/favicon.ico" alt="Logo" className="h-7 invert" />
+        <span className="text-white text-lg font-bold tracking-tight">
+          QR Generator
+        </span>
       </div>
-      <div className="flex-1"></div>
-      <div
-        className="flex justify-center items-center gap-0.5"
-        style={{ cursor: "pointer" }}
-        onClick={() => router.push("/")}
-      >
-        <House color="#a1a1a1" height={16}></House>
-        <p className="text-neutral-400">Home</p>
+
+      <div className="flex gap-6">
+        {navItems.map(({ label, icon: Icon, path }) => (
+          <div
+            key={label}
+            onClick={() => router.push(path)}
+            className="flex items-center gap-1 text-neutral-400 hover:text-white transition-colors cursor-pointer"
+          >
+            <Icon size={18} />
+            <span className="pl-1 text-md font-medium">{label}</span>
+          </div>
+        ))}
       </div>
-      <div
-        className="flex justify-center items-center gap-0.5"
-        style={{ cursor: "pointer" }}
-        onClick={() => router.push("/create_qr")}
-      >
-        <QrCode color="#a1a1a1" height={16} />
-        <p className="text-neutral-400">Create QR</p>
-      </div>
-    </div>
+    </nav>
   );
 }
