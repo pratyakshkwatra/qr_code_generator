@@ -40,6 +40,7 @@ export default function CreateQR() {
   const [formData, setFormData] = useState<Record<string, string>>({});
   const [qrValue, setQrValue] = useState("");
   const [error, setError] = useState("");
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   useEffect(() => {
     saveQRSettings(settings);
@@ -177,9 +178,42 @@ export default function CreateQR() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center px-4">
-      <div className="flex w-full max-w-6xl rounded-2xl shadow-xl overflow-hidden border bg-white">
-        <div className="flex-[0.9] p-6 border-r bg-white">
+    <div className="min-h-screen bg-gray-100 flex items-center justify-center px-4 relative">
+      {!sidebarOpen && (
+        <button
+          onClick={() => setSidebarOpen(!sidebarOpen)}
+          className="md:hidden absolute top-4 left-4 z-50 bg-white border rounded-lg p-2 shadow-md"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6 text-gray-700"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            />
+          </svg>
+        </button>
+      )}
+
+      {sidebarOpen && (
+        <div
+          onClick={() => setSidebarOpen(false)}
+          className="fixed inset-0 bg-black/30 md:hidden z-30"
+        />
+      )}
+
+      <div className="flex w-full max-w-6xl rounded-2xl shadow-xl overflow-hidden border bg-white relative">
+        <div
+          className={`z-40 fixed md:static top-0 left-0 h-full md:h-auto w-64 md:w-auto p-6 border-r bg-white transition-transform duration-300 ${
+            sidebarOpen ? "translate-x-0" : "-translate-x-full"
+          } md:translate-x-0`}
+        >
           <ul className="space-y-1">
             {tabs.map((tab) => (
               <ListItem
@@ -192,6 +226,7 @@ export default function CreateQR() {
                   setFormData({});
                   setQrValue("");
                   setError("");
+                  setSidebarOpen(false);
                 }}
               />
             ))}
@@ -201,7 +236,7 @@ export default function CreateQR() {
           </div>
         </div>
 
-        <div className="flex-[3.1] p-8 flex flex-col items-center justify-center bg-gray-50">
+        <div className="flex-1 p-8 flex flex-col items-center justify-center bg-gray-50">
           <div className="bg-white p-4 rounded-lg shadow">
             <div ref={qrRef} className="w-[250px] h-[250px]" />
           </div>
